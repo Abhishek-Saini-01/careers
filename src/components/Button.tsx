@@ -2,11 +2,11 @@ import { cva } from "class-variance-authority";
 import { ButtonHTMLAttributes } from "react";
 
 const classes = cva(
-    "border h-12 rounded-full px-6 font-medium", 
+    "border h-12 rounded-full px-6 font-medium",
     {
         variants: {
             variant: {
-                primary: "bg-lime-400 text-neutral-950 border-lime-400",
+                primary: "bg-gradient text-white border-[#4F46E5]",
                 secondary: "border-white text-white bg-transparent",
             },
             size: {
@@ -20,10 +20,10 @@ const Button = (props: {
     variant: "primary" | "secondary";
     size?: 'sm'
 } & ButtonHTMLAttributes<HTMLButtonElement>) => {
-    const { variant,size, className, ...othersPropss } = props;
+    const { variant, size, className, ...othersPropss } = props;
     return (
         <button className={
-            classes({ 
+            classes({
                 variant,
                 size,
                 className

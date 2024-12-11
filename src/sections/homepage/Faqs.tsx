@@ -7,24 +7,28 @@ import { twMerge } from "tailwind-merge";
 
 const faqs = [
     {
-        question: "How is Layers different from other design tools?",
-        answer: "Unlike traditional design tools, Layers prioritizes speed and simplicity without sacrificing power. Our intelligent interface adapts to your workflow, reducing clicks and keeping you in your creative flow.",
+        question: "What is Careers?",
+        answer: "Careers is an AI-powered platform designed to help users explore and choose the right career path. It provides personalized career recommendations based on your skills, interests, and goals.",
     },
     {
-        question: "Is there a learning curve?",
-        answer: "Layers is designed to feel intuitive from day one. Most designers are productive within hours, not weeks. We also provide interactive tutorials and comprehensive documentation to help you get started.",
+        question: "How does Careers work?",
+        answer: " By creating a profile, you can input your skills, interests, and goals. Our AI engine then analyzes this data and suggests tailored career options, along with resources to help you succeed in those careers.",
     },
     {
-        question: "How do you handle version control?",
-        answer: "Every change in Layers is automatically saved and versioned. You can review history, restore previous versions, and create named versions for important milestones.",
+        question: "Is Careers free to use?",
+        answer: "Yes, Careers offers free access to many features. We also provide premium services for more in-depth recommendations and personalized learning paths.",
     },
     {
-        question: "Can I work offline?",
-        answer: "Yes! Layers includes a robust offline mode. Changes sync automatically when you're back online, so you can keep working anywhere.",
+        question: "How accurate are the career recommendations?",
+        answer: "The recommendations are powered by advanced AI algorithms and are based on real-time data about job market trends and skills demand. While no tool is perfect, our system strives to provide highly relevant career options.",
     },
     {
-        question: "How does Layers handle collaboration?",
-        answer: "Layers is built for collaboration. You can invite team members to your projects, share feedback, and work together in real-time.",
+        question: "Can I update my career preferences?",
+        answer: "Yes, you can update your preferences, interests, and skills anytime to receive new or updated career suggestions that better match your evolving goals.",
+    },
+    {
+        question: "Is my data safe with Career Navigator?",
+        answer: "Yes, we prioritize user privacy and data security. All personal information is securely stored, and we adhere to industry-standard encryption practices to protect your data.",
     },
 ];
 
@@ -32,13 +36,13 @@ const faqs = [
 const Faqs = () => {
     const [selectedIndex, setSelectedIndex] = useState(0);
     return (
-        <section className="py-24">
+        <section id="faqs" className="py-24">
             <div className="container">
                 <div className="flex justify-center">
                     <Tag>Faqs</Tag>
                 </div>
                 <h2 className="text-6xl font-medium mt-6 text-center max-w-xl mx-auto">
-                    Questions? We&apos;ve got <span className="text-lime-400">answers</span>
+                    Questions? We&apos;ve got <span className="bg-gradient text-transparent bg-clip-text">answers</span>
                 </h2>
                 <div className="mt-12 flex flex-col gap-6 max-w-xl mx-auto">
                     {faqs.map((faq, faqIndex) => (
@@ -62,7 +66,7 @@ const Faqs = () => {
                                     strokeLinecap="round"
                                     strokeLinejoin="round"
                                     className={twMerge(
-                                        "feather feather-plus text-lime-400 flex-shrink-0 transition duration-300",
+                                        "feather cursor-pointer feather-plus text-[#4F46E5] flex-shrink-0 transition duration-300",
                                         selectedIndex === faqIndex && "rotate-45"
                                     )}
                                 >

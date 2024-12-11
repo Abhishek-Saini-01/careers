@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/assets/images/logo.svg";
+import Logo from "@/assets/images/logo-careers.svg";
 import Button from "@/components/Button";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
@@ -9,9 +9,9 @@ import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
 const navLinks = [
-    { label: "Home", href: "#" },
-    { label: "Features", href: "#features" },
-    { label: "Integrations", href: "#integrations" },
+    { label: "Home", href: "/" },
+    { label: "About", href: "#about" },
+    { label: "Careers", href: "/careers" },
     { label: "FAQs", href: "#faqs" },
 ];
 
@@ -22,12 +22,13 @@ const Navbar = () => {
             <div className="container max-w-5xl">
                 <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
                     <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center">
-                        <div>
+                        <div className="flex items-center gap-2">
                             <Image
                                 src={Logo}
                                 alt="logo"
                                 className="h-9 md:h-auto w-auto"
                             />
+                            <p className="bg-gradient uppercase inline-flex text-transparent bg-clip-text text-4xl font-extrabold">Careers</p>
                         </div>
                         <div className="hidden lg:flex justify-center items-center">
                             <nav className="flex gap-6 font-medium">
@@ -54,8 +55,16 @@ const Navbar = () => {
                                 <line x1="3" y1="12" x2="21" y2="12" className={twMerge("transition", isOpen && "opacity-0")}></line>
                                 <line x1="3" y1="18" x2="21" y2="18" className={twMerge("origin-left transition", isOpen && "-rotate-45 translate-y-1")}></line>
                             </svg>
-                            <Button variant="secondary" className="hidden md:inline-flex items-center">Log In</Button>
-                            <Button variant="primary" className="hidden md:inline-flex items-center">Sign Up</Button>
+                            <Link
+                                href="/login"
+                            >
+                                <Button variant="secondary" className="hidden md:inline-flex items-center">Log In</Button>
+                            </Link>
+                            <Link
+                                href="/signup"
+                            >
+                                <Button variant="primary" className="hidden md:inline-flex items-center">Sign Up</Button>
+                            </Link>
                         </div>
                     </div>
                     <AnimatePresence>
@@ -74,8 +83,16 @@ const Navbar = () => {
                                             className=""
                                         >{navLink.label}</Link>
                                     ))}
-                                    <Button variant="secondary">Log In</Button>
-                                    <Button variant="primary">Sign Up</Button>
+                                    <Link
+                                        href="/login"
+                                    >
+                                        <Button variant="secondary">Log In</Button>
+                                    </Link>
+                                    <Link
+                                        href="/signup"
+                                    >
+                                        <Button variant="primary">Sign Up</Button>
+                                    </Link>
                                 </div>
                             </motion.div>
                         )}

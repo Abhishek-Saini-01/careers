@@ -1,20 +1,20 @@
-import figmaIcon from "@/assets/images/figma-logo.svg";
-import framerIcon from "@/assets/images/framer-logo.svg";
-import githubcon from "@/assets/images/github-logo.svg";
-import notionIcon from "@/assets/images/notion-logo.svg";
-import relumeIcon from "@/assets/images/relume-logo.svg";
-import slackIcon from "@/assets/images/slack-logo.svg";
+import DoctorIcon from "@/assets/images/doctor.jpg";
+import EngineerIcon from "@/assets/images/engineer.jpg";
+import LawyerIcon from "@/assets/images/lawyer.jpg";
+import PioletIcon from "@/assets/images/poilet.jpg";
+import PoliticanIcon from "@/assets/images/politions.jpg";
+import TeacherIcon from "@/assets/images/teacher.jpg";
 import IntegrationsColumn from "@/components/IntegrationsColumn";
 
 import Tag from "@/components/Tag";
 
 const integrations = [
-    { name: "Figma", icon: figmaIcon, description: "Figma is a collaborative interface design tool." },
-    { name: "Notion", icon: notionIcon, description: "Notion is an all-in-one workspace for notes and docs." },
-    { name: "Slack", icon: slackIcon, description: "Slack is a powerful team communication platform." },
-    { name: "Relume", icon: relumeIcon, description: "Relume is a no-code website builder and design system." },
-    { name: "Framer", icon: framerIcon, description: "Framer is a professional website prototyping tool." },
-    { name: "GitHub", icon: githubcon, description: "GitHub is the leading platform for code collaboration." },
+    { name: "Engineer", icon: EngineerIcon, description: "Designs and builds systems, structures, or technologies." },
+    { name: "Doctor", icon: DoctorIcon, description: "Diagnoses and treats medical conditions, ensuring health." },
+    { name: "Lawyer", icon: LawyerIcon, description: "Provides legal advice and represents clients in court." },
+    { name: "Teacher", icon: TeacherIcon, description: "Educates and shapes the minds of future generations." },
+    { name: "Pilot", icon: PioletIcon, description: "Operates aircraft to transport passengers or cargo." },
+    { name: "Politician", icon: PoliticanIcon, description: "Represents people, creates policies, and governs." },
 ];
 export type IntegrationsTypes = typeof integrations;
 
@@ -26,9 +26,9 @@ const Integrations = () => {
             <div className="container">
                 <div className="grid lg:grid-cols-2 items-center lg:gap-16">
                     <div>
-                        <Tag>Integrations</Tag>
-                        <h2 className="text-6xl font-medium mt-6">Plays well with <span className="text-lime-400">others</span></h2>
-                        <p className="text-white/50 mt-4 text-lg">Layers seamlessty connects with your favorite tools workflow and ohlaborate across platforms.</p>
+                        <Tag>Careers</Tag>
+                        <h2 className="text-6xl font-medium mt-6">Career <span className="bg-gradient text-transparent bg-clip-text">Navigator</span></h2>
+                        <p className="text-white/50 mt-4 text-lg">Helping you discover, explore, and achieve your ideal career path</p>
                     </div>
                     <div>
                         <div className="h-[400px] lg:h-[800px] grid md:grid-cols-2 gap-4 overflow-hidden mt-8 lg:mt-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">

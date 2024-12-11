@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+    scroll-behavior: smooth;
+}
+
+@layer base {
+    .bg-gradient {
+        @apply bg-gradient-to-r from-[#726BEA] to-[#4F46E5];
+    }
+}

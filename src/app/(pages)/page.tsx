@@ -6,8 +6,7 @@ import {
     Features,
     Hero,
     Integrations,
-    Introduction,
-    LogoTicker
+    Introduction
 } from "@/sections/homepage";
 
 export default function Home() {
@@ -16,7 +15,6 @@ export default function Home() {
             <Navbar />
             <div className="pb-[86px] md:pb-[98px] lg:pb-[130px]" />
             <Hero />
-            <LogoTicker />
             <Introduction />
             <Features />
             <Integrations />
