@@ -2,17 +2,20 @@
 
 import Logo from "@/assets/images/logo-careers.svg";
 import Button from "@/components/Button";
+import { SignedIn, SignedOut, SignInButton, UserButton, } from "@clerk/nextjs";
+import { Authenticated, AuthLoading, Unauthenticated, useQuery } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+import { api } from "../../convex/_generated/api";
 
 const navLinks = [
     { label: "Home", href: "/" },
-    { label: "About", href: "#about" },
+    { label: "About", href: "/#about" },
     { label: "Careers", href: "/careers" },
-    { label: "FAQs", href: "#faqs" },
+    { label: "FAQs", href: "/#faqs" },
 ];
 
 const Navbar = () => {
@@ -22,14 +25,14 @@ const Navbar = () => {
             <div className="container max-w-5xl">
                 <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
                     <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center">
-                        <div className="flex items-center gap-2">
+                        <Link href="/" className="flex items-center gap-2 cursor-pointer">
                             <Image
                                 src={Logo}
                                 alt="logo"
                                 className="h-9 md:h-auto w-auto"
                             />
                             <p className="bg-gradient uppercase inline-flex text-transparent bg-clip-text text-4xl font-extrabold">Careers</p>
-                        </div>
+                        </Link>
                         <div className="hidden lg:flex justify-center items-center">
                             <nav className="flex gap-6 font-medium">
                                 {navLinks.map(link => (
@@ -37,7 +40,7 @@ const Navbar = () => {
                                 ))}
                             </nav>
                         </div>
-                        <div className="flex justify-end gap-4">
+                        <div className="flex justify-end">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 width="24"
@@ -55,16 +58,29 @@ const Navbar = () => {
                                 <line x1="3" y1="12" x2="21" y2="12" className={twMerge("transition", isOpen && "opacity-0")}></line>
                                 <line x1="3" y1="18" x2="21" y2="18" className={twMerge("origin-left transition", isOpen && "-rotate-45 translate-y-1")}></line>
                             </svg>
-                            <Link
-                                href="/login"
-                            >
-                                <Button variant="secondary" className="hidden md:inline-flex items-center">Log In</Button>
-                            </Link>
-                            <Link
-                                href="/signup"
-                            >
-                                <Button variant="primary" className="hidden md:inline-flex items-center">Sign Up</Button>
-                            </Link>
+
+
+
+                            <Authenticated>
+                                <div className="flex items-center px-2">
+                                    <UserButton />
+                                </div>
+                            </Authenticated>
+                            <Unauthenticated>
+                                <div className="flex items-center gap-2">
+                                    <Link
+                                        href="/login"
+                                    >
+                                        <Button variant="secondary" className="hidden hover:opacity-85 md:inline-flex items-center">Log In</Button>
+                                    </Link>
+                                    <Link
+                                        href="/signup"
+                                    >
+                                        <Button variant="primary" className="hidden hover:opacity-85 md:inline-flex items-center">Sign Up</Button>
+                                    </Link>
+                                </div>
+                            </Unauthenticated>
+
                         </div>
                     </div>
                     <AnimatePresence>
@@ -83,16 +99,26 @@ const Navbar = () => {
                                             className=""
                                         >{navLink.label}</Link>
                                     ))}
-                                    <Link
-                                        href="/login"
-                                    >
-                                        <Button variant="secondary">Log In</Button>
-                                    </Link>
-                                    <Link
-                                        href="/signup"
-                                    >
-                                        <Button variant="primary">Sign Up</Button>
-                                    </Link>
+
+                                    <Authenticated>
+                                        <div className="flex items-center px-2">
+                                            <UserButton />
+                                        </div>
+                                    </Authenticated>
+                                    <Unauthenticated>
+                                        <div className="flex items-center flex-col  gap-2">
+                                            <Link
+                                                href="/login"
+                                            >
+                                                <Button variant="secondary">Log In</Button>
+                                            </Link>
+                                            <Link
+                                                href="/signup"
+                                            >
+                                                <Button variant="primary">Sign Up</Button>
+                                            </Link>
+                                        </div>
+                                    </Unauthenticated>
                                 </div>
                             </motion.div>
                         )}
@@ -102,5 +128,8 @@ const Navbar = () => {
         </section>
     );
 }
+
+
+
 
 export default Navbar

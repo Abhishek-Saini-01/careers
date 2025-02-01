@@ -6,7 +6,7 @@ const AuthLayout = ({
     children: React.ReactNode
 }) => {
     return (
-        <div className="bg-neutral-950 text-white">
+        <div className="bg-neutral-950 overflow-hidden text-white">
             {children}
         </div>
     )

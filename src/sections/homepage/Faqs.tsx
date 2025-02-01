@@ -51,7 +51,7 @@ const Faqs = () => {
                             className="bg-neutral-900 rounded-2xl border-white/10 p-6"
                         >
                             <div
-                                className="flex justify-between items-center"
+                                className="flex justify-between items-center cursor-pointer"
                                 onClick={() => setSelectedIndex(faqIndex)}
                             >
                                 <h3 className="font-medium">{faq.question}</h3>
