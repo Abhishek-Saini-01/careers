@@ -2,14 +2,13 @@
 
 import Logo from "@/assets/images/logo-careers.svg";
 import Button from "@/components/Button";
-import { SignedIn, SignedOut, SignInButton, UserButton, } from "@clerk/nextjs";
-import { Authenticated, AuthLoading, Unauthenticated, useQuery } from "convex/react";
+import { UserButton, } from "@clerk/nextjs";
+import { Authenticated, Unauthenticated } from "convex/react";
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { api } from "../../convex/_generated/api";
 import { usePathname } from "next/navigation";
 
 const navLinks = [

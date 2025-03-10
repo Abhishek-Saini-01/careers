@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React from 'react';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
@@ -129,7 +130,7 @@ const MoreCareers: React.FC<Props> = ({ blogs }) => {
                                 {blogs.map((blog, index) => (
                                     <div key={index} className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group">
                                         <div className="flex items-center mb-9">
-                                            <img src={blog.imgSrc} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" />
+                                            <Image src={blog.imgSrc} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
                                         </div>
                                         <h3 className="text-xl text-white font-medium leading-8 mb-4 ">
                                             {blog.title}

@@ -11,6 +11,7 @@ import {
     PaginationNext,
     PaginationPrevious,
 } from "@/components/ui/pagination"
+import Image from 'next/image'
 
 
 const CareerCard = () => {
@@ -24,10 +25,10 @@ const CareerCard = () => {
                 </div>
                 <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {Array.from({ length: 6 }).map((_, i) => (
-                        <div className="cursor-pointer group relative flex flex-col my-6 bg-neutral-900 shadow-sm border border-white/70 rounded-lg  hover:shadow-lg transition-shadow duration-300">
+                        <div key={i} className="cursor-pointer group relative flex flex-col my-6 bg-neutral-900 shadow-sm border border-white/70 rounded-lg  hover:shadow-lg transition-shadow duration-300">
                             <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                <img className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
-                                    src="https://images.unsplash.com/photo-1496436818536-e239445d3327?q=80&w=1200" alt="investment-seed-round" />
+                                <Image className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
+                                    src="https://images.unsplash.com/photo-1496436818536-e239445d3327?q=80&w=1200" alt="investment-seed-round" fill />
                             </div>
                             <div className="p-4">
                                 <Badge className='mb-2 bg-emerald-500'>Engineering</Badge>
