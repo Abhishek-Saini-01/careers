@@ -6,6 +6,7 @@ import EnginnerImage from "@/assets/images/enginner.png"
 import Button from "@/components/Button"
 import Card from "@/components/Card"
 import { motion, useAnimate } from "framer-motion"
+import Link from "next/link"
 import { useEffect } from "react"
 
 const Hero = () => {
@@ -101,12 +102,16 @@ const Hero = () => {
         >Navigate Your Career Path with Confidence</h1>
         <p className="text-center text-xl text-white/50 mt-8 mx-auto max-w-2xl">Discover the career that&apos;s right for you. Personalized guidance at your fingertips.</p>
         <div className="w-fit mt-8 mx-auto">
-          <Button
-            variant="primary"
-            type="submit"
-            className="whitespace-nowrap lg:w-56"
-            size="sm"
-          >Get Started</Button>
+          <Link
+            href="/careers"
+          >
+            <Button
+              variant="primary"
+              type="submit"
+              className="whitespace-nowrap lg:w-56"
+              size="sm"
+            >Get Started</Button>
+          </Link>
         </div>
       </div>
     </section>

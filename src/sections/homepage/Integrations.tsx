@@ -4,9 +4,11 @@ import LawyerIcon from "@/assets/images/lawyer.jpg";
 import PioletIcon from "@/assets/images/poilet.jpg";
 import PoliticanIcon from "@/assets/images/politions.jpg";
 import TeacherIcon from "@/assets/images/teacher.jpg";
+import Button from "@/components/Button";
 import IntegrationsColumn from "@/components/IntegrationsColumn";
 
 import Tag from "@/components/Tag";
+import Link from "next/link";
 
 const integrations = [
     { name: "Engineer", icon: EngineerIcon, description: "Designs and builds systems, structures, or technologies." },
@@ -28,7 +30,17 @@ const Integrations = () => {
                     <div>
                         <Tag>Careers</Tag>
                         <h2 className="text-6xl font-medium mt-6">Career <span className="bg-gradient text-transparent bg-clip-text">Navigator</span></h2>
-                        <p className="text-white/50 mt-4 text-lg">Helping you discover, explore, and achieve your ideal career path</p>
+                        <p className="text-white/50 my-4 text-lg">Helping you discover, explore, and achieve your ideal career path</p>
+                        <Link
+                            href="/careers"
+                        >
+                            <Button
+                                variant="primary"
+                                type="submit"
+                                className="whitespace-nowrap lg:w-56"
+                                size="sm"
+                            >Get Started</Button>
+                        </Link>
                     </div>
                     <div>
                         <div className="h-[400px] lg:h-[800px] grid md:grid-cols-2 gap-4 overflow-hidden mt-8 lg:mt-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">

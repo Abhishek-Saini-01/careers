@@ -1,7 +1,7 @@
 import { Footer, Navbar } from '@/sections';
 import React from 'react'
 
-const PageLayout = ({
+const CareersLayout = ({
     children
 }: {
     children: React.ReactNode;
@@ -16,4 +16,4 @@ const PageLayout = ({
     )
 }
 
-export default PageLayout
+export default CareersLayout

@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { api } from "../../convex/_generated/api";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
     { label: "Home", href: "/" },
@@ -20,8 +21,9 @@ const navLinks = [
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const pathanme = usePathname();
     return (
-        <section className="py-4 lg:py-8 fixed w-full top-0 z-50">
+        <section className="py-4 lg:py-8 fixed w-full top-0 z-40">
             <div className="container max-w-5xl">
                 <div className="border border-white/15 rounded-[27px] md:rounded-full bg-neutral-950/70 backdrop-blur">
                     <div className="grid grid-cols-2 lg:grid-cols-3  p-2 px-4 md:pr-2 items-center">
@@ -36,7 +38,7 @@ const Navbar = () => {
                         <div className="hidden lg:flex justify-center items-center">
                             <nav className="flex gap-6 font-medium">
                                 {navLinks.map(link => (
-                                    <Link href={link.href} key={link.href} >{link.label}</Link>
+                                    <Link href={link.href} key={link.href} className={pathanme === link.href ? `text-blue-600` : ``}>{link.label}</Link>
                                 ))}
                             </nav>
                         </div>

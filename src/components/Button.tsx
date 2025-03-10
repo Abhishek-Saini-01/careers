@@ -6,8 +6,8 @@ const classes = cva(
     {
         variants: {
             variant: {
-                primary: "bg-gradient text-white border-[#4F46E5]",
-                secondary: "border-white text-white bg-transparent",
+                primary: "bg-gradient text-white border-[#4F46E5] hover:opacity-90",
+                secondary: "border-white text-white bg-transparent hover:opacity-90",
             },
             size: {
                 sm: "h-10"

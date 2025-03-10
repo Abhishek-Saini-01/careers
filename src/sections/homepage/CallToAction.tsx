@@ -1,5 +1,6 @@
 "use client";
 import { AnimationPlaybackControls, motion, useAnimate } from "framer-motion";
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const CallToAction = () => {
@@ -42,10 +43,10 @@ const CallToAction = () => {
                     onMouseLeave={() => setIsHovered(false)}
                 >
                     {Array.from({ length: 10 }).map((_, i) => (
-                        <div key={i} className="flex items-center gap-16">
+                        <Link href="/careers" key={i} className="flex items-center gap-16">
                             <span className="text-[#4F46E5] text-7xl">&#10038;</span>
                             <span className="group-hover:text-[#4F46E5] transition ">Try it for free</span>
-                        </div>
+                        </Link>
                     ))}
                 </motion.div>
             </div>

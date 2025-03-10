@@ -28,9 +28,7 @@ export default function RootLayout({
                 className={`${inter.variable} font-sans antialiased bg-neutral-950 text-white`}
             >
                 <ConvexClientProvider >
-
                     {children}
-
                 </ConvexClientProvider>
             </body>
         </html>

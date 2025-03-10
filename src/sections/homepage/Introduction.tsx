@@ -12,7 +12,8 @@ const Introduction = () => {
         offset: ['start end', 'end end']
     });
 
-    const text = `Designed to guide and inspire, our platform leverages cutting-edge AI to provide personalized career recommendations, skill-building opportunities, and actionable insights tailored to your unique potential. Whether you're charting your first steps or redefining your path, we’re here to transform your ambitions into achievements. Unlock your dream career and make your mark on the world today!`;
+    // const text = `Designed to guide and inspire, our platform leverages cutting-edge AI to provide personalized career recommendations, skill-building opportunities, and actionable insights tailored to your unique potential. Whether you're charting your first steps or redefining your path, we’re here to transform your ambitions into achievements. Unlock your dream career and make your mark on the world today!`;
+    const text = `Designed to guide and inspire, our platform leverages cutting-edge AI to provide personalized career recommendations, skill-building opportunities, and actionable insights tailored to your unique potential.`;
     const words = text.split(' ');
     const [currentWord, setCurrentWord] = useState(0);
     const wordIndex = useTransform(scrollYProgress, [0, 1], [0, words.length])
