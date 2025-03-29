@@ -1,4 +1,4 @@
-import React from 'react'
+"use client"
 
 const AdminLayout = ({ children }: { children: React.ReactNode }) => {
     return (

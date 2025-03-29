@@ -203,11 +203,11 @@ const AdminPage = () => {
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="cover_img">Cover Image</Label>
-                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="cover_img" type="file" accept='image/*' value={coverImageFile?.name} onChange={(e) => setCoverImageFile(e.target.files![0])} />
+                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="cover_img" type="file" accept='image/*' onChange={(e) => setCoverImageFile(e.target.files![0])} />
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="introImage">Introduction Image</Label>
-                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="introImage" type="file" accept='image/*' value={introImageFile?.name} onChange={(e) => setIntroImageFile(e.target.files![0])} />
+                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="introImage" type="file" accept='image/*' onChange={(e) => setIntroImageFile(e.target.files![0])} />
                                 </div>
 
 
