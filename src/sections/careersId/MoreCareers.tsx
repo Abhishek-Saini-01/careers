@@ -3,20 +3,33 @@ import Image from 'next/image';
 import React from 'react';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
+import { Id } from '../../../convex/_generated/dataModel';
 
 // Import Swiper styles (adjust path if needed)
 interface Blog {
-    imgSrc: string;
-    title: string;
-    description: string;
-    link: string;
+
+    _id: Id<"careers">; // Unique identifier for the career
+    title: string; // Title of the career
+    introduction: string; // Brief introduction to the career
+    subTitle1?: string; // Optional subtitle 1
+    description1?: string; // Optional description 1
+    subTitle2?: string; // Optional subtitle 2
+    description2?: string; // Optional description 2
+    subTitle3?: string; // Optional subtitle 3
+    description3?: string; // Optional description 3
+    coverImage?: string; // Optional storage ID for the cover image
+    introImage?: string; // Optional storage ID for the intro image
+    categoryId: Id<"categories">; // Reference to the category ID
+    categoryName: string;
+    coverImageUrl: string | null;
+    introImageUrl: string | null;
 }
 
 interface Props {
-    blogs: Blog[];
+    careers: Blog[];
 }
 
-const MoreCareers: React.FC<Props> = ({ blogs }) => {
+const MoreCareers: React.FC<Props> = ({ careers }) => {
     React.useEffect(() => {
         const swiper = new Swiper(".mySwiper", {
             slidesPerView: 2,
@@ -127,16 +140,16 @@ const MoreCareers: React.FC<Props> = ({ blogs }) => {
                         {/* Slider wrapper */}
                         <div className="swiper mySwiper">
                             <div className="swiper-wrapper">
-                                {blogs.map((blog, index) => (
+                                {careers?.map((career, index) => (
                                     <div key={index} className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group">
                                         <div className="flex items-center mb-9">
-                                            <Image src={blog.imgSrc} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
+                                            <Image src={career.introImageUrl || career.coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
                                         </div>
                                         <h3 className="text-xl text-white font-medium leading-8 mb-4 ">
-                                            {blog.title}
+                                            {career.title}
                                         </h3>
-                                        <p className="text-white/60 leading-6 transition-all duration-500 mb-8">{blog.description}</p>
-                                        <a href={blog.link} className="cursor-pointer hover:underline underline-offset-2 flex items-center gap-2 text-lg text-blue-600 font-semibold">
+                                        <p className="text-white/60 leading-6 transition-all duration-500 mb-8">{career.introduction}</p>
+                                        {/* <a href={career.} className="cursor-pointer hover:underline underline-offset-2 flex items-center gap-2 text-lg text-blue-600 font-semibold">
                                             Read more
                                             <svg width="15" height="12" viewBox="0 0 15 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -147,7 +160,7 @@ const MoreCareers: React.FC<Props> = ({ blogs }) => {
                                                     strokeLinejoin="round"
                                                 />
                                             </svg>
-                                        </a>
+                                        </a> */}
                                     </div>
                                 ))}
                             </div>

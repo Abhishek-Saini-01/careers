@@ -1,7 +1,8 @@
+import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
-import { ConvexClientProvider } from "@/providers/ConvexClientProvider";
 
 
 const inter = Inter({
@@ -22,12 +23,13 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className="dark">
             <body
                 className={`${inter.variable} font-sans antialiased bg-neutral-950 text-white`}
             >
                 <ConvexClientProvider >
                     {children}
+                    <Toaster />
                 </ConvexClientProvider>
             </body>
         </html>
