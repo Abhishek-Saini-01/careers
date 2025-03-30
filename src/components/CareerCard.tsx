@@ -21,8 +21,8 @@ const CareerCard = () => {
                     {careers && careers.length > 0 ? careers.map((career, i) => (
                         <div key={i} className="cursor-pointer group relative flex flex-col my-6 bg-neutral-900 shadow-sm border border-white/70 rounded-lg  hover:shadow-lg transition-shadow duration-300">
                             <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                <Image className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
-                                    src={career.coverImageUrl || career.introImageUrl || ''} alt="investment-seed-round" fill />
+                                <Image priority className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
+                                    src={career.coverImageUrl || career.introImageUrl || 'https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826'} alt="investment-seed-round" fill />
                             </div>
                             <div className="p-4">
                                 <Badge className='mb-2 bg-emerald-500'>{career.categoryName}</Badge>

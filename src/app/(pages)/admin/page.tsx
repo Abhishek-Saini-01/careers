@@ -57,53 +57,128 @@ const AdminPage = () => {
     });
 
 
+    // const handleSubmit = async () => {
+    //     setIsLoading(true);
+    //     let coverImageId: Id<"_storage"> | undefined;
+    //     let introImageId: Id<"_storage"> | undefined;
+    //     try {
+    //         if (coverImageFile) {
+    //             const url = await generateUploadUrl({});
+
+    //             if (!url) {
+    //                 throw new Error("Url not found");
+    //             }
+
+    //             const result = await fetch(url, {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": coverImageFile.type },
+    //                 body: coverImageFile,
+    //             });
+    //             if (!result.ok) {
+    //                 throw new Error("Failed to upload image");
+    //             }
+
+    //             const { storageId } = await result.json();
+    //             coverImageId = storageId;
+    //         }
+
+
+    //         if (introImageFile) {
+    //             const url = await generateUploadUrl({});
+
+    //             if (!url) {
+    //                 throw new Error("Url not found");
+    //             }
+
+    //             const result = await fetch(url, {
+    //                 method: "POST",
+    //                 headers: { "Content-Type": introImageFile.type },
+    //                 body: introImageFile,
+    //             });
+    //             if (!result.ok) {
+    //                 throw new Error("Failed to upload intro image");
+    //             }
+
+    //             const { storageId } = await result.json();
+    //             introImageId = storageId;
+    //         }
+    //         console.log("Image IDs:", coverImageId, introImageId);
+
+
+    //         await addCareer({
+    //             title,
+    //             introduction: intro,
+    //             categoryId: categoryId!,
+    //             subTitle1,
+    //             description1,
+    //             subTitle2,
+    //             description2,
+    //             subTitle3,
+    //             description3,
+    //             coverImage: coverImageId || undefined,
+    //             introImage: introImageId || undefined,
+    //         });
+
+    //         toast.success("Career created successfully!");
+
+    //     } catch (error) {
+    //         console.error("Error creating career:", error);
+    //         toast.error("Failed to create career");
+    //     } finally {
+    //         setTitle("");
+    //         setIntro("");
+    //         setSubTitle1("");
+    //         setDescription1("");
+    //         setSubTitle2("");
+    //         setDescription2("");
+    //         setSubTitle3("");
+    //         setDescription3("");
+    //         setCoverImageFile(null);
+    //         setIntroImageFile(null);
+    //         setCategoryId(undefined);
+    //         setIsLoading(false);
+    //     }
+    // };
+
     const handleSubmit = async () => {
         setIsLoading(true);
-        let coverImageId: Id<"_storage"> | undefined;
-        let introImageId: Id<"_storage"> | undefined;
+        let coverImageId;
+        let introImageId;
+
         try {
             if (coverImageFile) {
                 const url = await generateUploadUrl({});
-
-                if (!url) {
-                    throw new Error("Url not found");
-                }
+                if (!url) throw new Error("Upload URL not found");
 
                 const result = await fetch(url, {
                     method: "POST",
                     headers: { "Content-Type": coverImageFile.type },
                     body: coverImageFile,
                 });
-                if (!result.ok) {
-                    throw new Error("Failed to upload image");
-                }
+
+                if (!result.ok) throw new Error("Failed to upload cover image");
 
                 const { storageId } = await result.json();
                 coverImageId = storageId;
             }
 
-
             if (introImageFile) {
                 const url = await generateUploadUrl({});
-
-                if (!url) {
-                    throw new Error("Url not found");
-                }
+                if (!url) throw new Error("Upload URL not found");
 
                 const result = await fetch(url, {
                     method: "POST",
                     headers: { "Content-Type": introImageFile.type },
                     body: introImageFile,
                 });
-                if (!result.ok) {
-                    throw new Error("Failed to upload intro image");
-                }
+
+                if (!result.ok) throw new Error("Failed to upload intro image");
 
                 const { storageId } = await result.json();
                 introImageId = storageId;
             }
-            console.log("Image IDs:", coverImageId, introImageId);
 
+            console.log("Image IDs:", coverImageId, introImageId);
 
             await addCareer({
                 title,
@@ -123,8 +198,9 @@ const AdminPage = () => {
 
         } catch (error) {
             console.error("Error creating career:", error);
-            toast.error("Failed to create career");
+            toast.error(`Failed to create career: ${error}`);
         } finally {
+            // Reset form fields
             setTitle("");
             setIntro("");
             setSubTitle1("");
@@ -139,6 +215,7 @@ const AdminPage = () => {
             setIsLoading(false);
         }
     };
+
 
     return (
         <div className='h-full gap-5 w-full flex-col flex items-center  text-2xl font-semibold text-blue-600 mx-auto'>

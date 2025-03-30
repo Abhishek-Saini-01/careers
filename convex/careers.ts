@@ -34,36 +34,71 @@ export const addCareer = mutation({
     },
 });
 
+// export const getAllCareers = query({
+//     handler: async (ctx) => {
+//         // Fetch all careers
+//         const careers = await ctx.db.query("careers").collect();
+
+//         // Map over careers and fetch the corresponding category and image URLs for each career
+//         const careersWithDetails = await Promise.all(
+//             careers.map(async (career) => {
+//                 // Fetch category by ID
+//                 const category = await ctx.db.get(career.categoryId);
+
+//                 // Initialize URLs for images
+//                 let coverImageUrl = null;
+//                 let introImageUrl = null;
+
+//                 // Fetch cover image URL if it exists
+//                 if (career.coverImage) {
+//                     coverImageUrl = await ctx.storage.getUrl(career.coverImage);
+//                 }
+
+//                 // Fetch intro image URL if it exists
+//                 if (career.introImage) {
+//                     introImageUrl = await ctx.storage.getUrl(career.introImage);
+//                 }
+
+//                 return {
+//                     ...career,
+//                     categoryName: category?.name || "Unknown", // Add category name to the career object
+//                     coverImageUrl, // Add cover image URL
+//                     introImageUrl, // Add intro image URL
+//                 };
+//             })
+//         );
+
+//         return careersWithDetails;
+//     },
+// });
+
 export const getAllCareers = query({
     handler: async (ctx) => {
-        // Fetch all careers
         const careers = await ctx.db.query("careers").collect();
 
-        // Map over careers and fetch the corresponding category and image URLs for each career
         const careersWithDetails = await Promise.all(
             careers.map(async (career) => {
-                // Fetch category by ID
                 const category = await ctx.db.get(career.categoryId);
 
-                // Initialize URLs for images
                 let coverImageUrl = null;
                 let introImageUrl = null;
 
-                // Fetch cover image URL if it exists
-                if (career.coverImage) {
-                    coverImageUrl = await ctx.storage.getUrl(career.coverImage);
-                }
-
-                // Fetch intro image URL if it exists
-                if (career.introImage) {
-                    introImageUrl = await ctx.storage.getUrl(career.introImage);
+                try {
+                    if (career.coverImage) {
+                        coverImageUrl = await ctx.storage.getUrl(career.coverImage);
+                    }
+                    if (career.introImage) {
+                        introImageUrl = await ctx.storage.getUrl(career.introImage);
+                    }
+                } catch (error) {
+                    console.error(`Error fetching image URLs for career ${career._id}:`, error);
                 }
 
                 return {
                     ...career,
-                    categoryName: category?.name || "Unknown", // Add category name to the career object
-                    coverImageUrl, // Add cover image URL
-                    introImageUrl, // Add intro image URL
+                    categoryName: category?.name || "Unknown",
+                    coverImageUrl,
+                    introImageUrl,
                 };
             })
         );
@@ -71,6 +106,7 @@ export const getAllCareers = query({
         return careersWithDetails;
     },
 });
+
 
 export const getCareerById = query({
     args: {
