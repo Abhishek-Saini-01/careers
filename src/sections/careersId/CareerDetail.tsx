@@ -42,14 +42,23 @@ const CareerDetail = ({
                 <p className="my-10 font-normal text-white/80">
                     {description1}
                 </p>
-                <Image
-                    width={768}
-                    height={500}
-                    src={introImageUrl || coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
-                    alt="post"
-                    priority
-                    className="mb-4 h-[28rem] w-full rounded-xl object-cover"
-                />
+                {(coverImageUrl || introImageUrl) ? (
+                    <Image
+                        width={768}
+                        height={500}
+                        src={introImageUrl || coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
+                        alt="post"
+                        priority
+                        className="mb-4 h-[28rem] w-full rounded-xl object-cover"
+                    />) : (<Image
+                        width={768}
+                        height={500}
+                        src={introImageUrl || coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
+                        alt="post"
+                        priority
+                        className="mb-4 h-[28rem] w-full rounded-xl object-cover"
+                    />)}
+
                 {/* <p className="font-normal text-white/80">
                     Photo by Jackson Sophat on{" "}
                     <a

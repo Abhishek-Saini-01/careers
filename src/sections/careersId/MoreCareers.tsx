@@ -143,7 +143,11 @@ const MoreCareers: React.FC<Props> = ({ careers }) => {
                                 {careers?.map((career, index) => (
                                     <div key={index} className="swiper-slide w-full max-lg:max-w-xl lg:w-1/2 group">
                                         <div className="flex items-center mb-9">
-                                            <Image src={career.introImageUrl || career.coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
+                                            {(career.coverImageUrl || career.introImageUrl) ? (
+                                                <Image src={career.introImageUrl || career.coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"} alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
+                                            ) : (
+                                                <Image src="https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826" alt="blogs tailwind section" className="rounded-2xl w-full object-cover" fill />
+                                            )}
                                         </div>
                                         <h3 className="text-xl text-white font-medium leading-8 mb-4 ">
                                             {career.title}
