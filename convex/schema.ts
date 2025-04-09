@@ -15,8 +15,8 @@ export default defineSchema({
         description2: v.optional(v.string()),
         subTitle3: v.optional(v.string()),
         description3: v.optional(v.string()),
-        coverImage: v.optional(v.id("_storage")),
-        introImage: v.optional(v.id("_storage")),
+        coverImage: v.string(),
+        introImage: v.optional(v.string()),
         categoryId: v.id("categories")
     }).searchIndex("search_title", {
         searchField: "title",

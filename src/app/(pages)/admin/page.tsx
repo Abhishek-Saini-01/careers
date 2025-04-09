@@ -1,6 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button'
 
+import { FileUpload } from '@/components/FileUpload'
 import NewCategory from '@/components/NewCategory'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -8,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { useMutation, useQuery } from 'convex/react'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { toast } from 'sonner'
@@ -25,16 +27,18 @@ const AdminPage = () => {
     const [description2, setDescription2] = useState('');
     const [subTitle3, setSubTitle3] = useState('');
     const [description3, setDescription3] = useState('');
-    const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
-    const [introImageFile, setIntroImageFile] = useState<File | null>(null);
+
     const [categoryId, setCategoryId] = useState<Id<"categories">>();
     const [isLoading, setIsLoading] = useState(false);
+
+    const [coverImageUrl, setcoverImageUrl] = useState('');
+    const [intoImageUrl, setintoImageUrl] = useState('');
+
+
 
     const categories = useQuery(api.category.getAllCategories);
 
     const addCareer = useMutation(api.careers.addCareer);
-    const generateUploadUrl = useMutation(api.upload.generateUploadUrl);
-
 
     const handleValueChange = (value: Id<"categories">) => {
         setCategoryId(value);
@@ -52,134 +56,17 @@ const AdminPage = () => {
         description2,
         subTitle3,
         description3,
-        coverImageFile,
-        introImageFile
+        coverImageUrl,
+        intoImageUrl
     });
 
 
-    // const handleSubmit = async () => {
-    //     setIsLoading(true);
-    //     let coverImageId: Id<"_storage"> | undefined;
-    //     let introImageId: Id<"_storage"> | undefined;
-    //     try {
-    //         if (coverImageFile) {
-    //             const url = await generateUploadUrl({});
 
-    //             if (!url) {
-    //                 throw new Error("Url not found");
-    //             }
-
-    //             const result = await fetch(url, {
-    //                 method: "POST",
-    //                 headers: { "Content-Type": coverImageFile.type },
-    //                 body: coverImageFile,
-    //             });
-    //             if (!result.ok) {
-    //                 throw new Error("Failed to upload image");
-    //             }
-
-    //             const { storageId } = await result.json();
-    //             coverImageId = storageId;
-    //         }
-
-
-    //         if (introImageFile) {
-    //             const url = await generateUploadUrl({});
-
-    //             if (!url) {
-    //                 throw new Error("Url not found");
-    //             }
-
-    //             const result = await fetch(url, {
-    //                 method: "POST",
-    //                 headers: { "Content-Type": introImageFile.type },
-    //                 body: introImageFile,
-    //             });
-    //             if (!result.ok) {
-    //                 throw new Error("Failed to upload intro image");
-    //             }
-
-    //             const { storageId } = await result.json();
-    //             introImageId = storageId;
-    //         }
-    //         console.log("Image IDs:", coverImageId, introImageId);
-
-
-    //         await addCareer({
-    //             title,
-    //             introduction: intro,
-    //             categoryId: categoryId!,
-    //             subTitle1,
-    //             description1,
-    //             subTitle2,
-    //             description2,
-    //             subTitle3,
-    //             description3,
-    //             coverImage: coverImageId || undefined,
-    //             introImage: introImageId || undefined,
-    //         });
-
-    //         toast.success("Career created successfully!");
-
-    //     } catch (error) {
-    //         console.error("Error creating career:", error);
-    //         toast.error("Failed to create career");
-    //     } finally {
-    //         setTitle("");
-    //         setIntro("");
-    //         setSubTitle1("");
-    //         setDescription1("");
-    //         setSubTitle2("");
-    //         setDescription2("");
-    //         setSubTitle3("");
-    //         setDescription3("");
-    //         setCoverImageFile(null);
-    //         setIntroImageFile(null);
-    //         setCategoryId(undefined);
-    //         setIsLoading(false);
-    //     }
-    // };
 
     const handleSubmit = async () => {
         setIsLoading(true);
-        let coverImageId;
-        let introImageId;
 
         try {
-            if (coverImageFile) {
-                const url = await generateUploadUrl({});
-                if (!url) throw new Error("Upload URL not found");
-
-                const result = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": coverImageFile.type },
-                    body: coverImageFile,
-                });
-
-                if (!result.ok) throw new Error("Failed to upload cover image");
-
-                const { storageId } = await result.json();
-                coverImageId = storageId;
-            }
-
-            if (introImageFile) {
-                const url = await generateUploadUrl({});
-                if (!url) throw new Error("Upload URL not found");
-
-                const result = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": introImageFile.type },
-                    body: introImageFile,
-                });
-
-                if (!result.ok) throw new Error("Failed to upload intro image");
-
-                const { storageId } = await result.json();
-                introImageId = storageId;
-            }
-
-            console.log("Image IDs:", coverImageId, introImageId);
-
             await addCareer({
                 title,
                 introduction: intro,
@@ -190,8 +77,8 @@ const AdminPage = () => {
                 description2,
                 subTitle3,
                 description3,
-                coverImage: coverImageId || undefined,
-                introImage: introImageId || undefined,
+                coverImage: coverImageUrl,
+                introImage: intoImageUrl || undefined,
             });
 
             toast.success("Career created successfully!");
@@ -209,12 +96,13 @@ const AdminPage = () => {
             setDescription2("");
             setSubTitle3("");
             setDescription3("");
-            setCoverImageFile(null);
-            setIntroImageFile(null);
+            setcoverImageUrl("");
+            setintoImageUrl("");
             setCategoryId(undefined);
             setIsLoading(false);
         }
     };
+
 
 
     return (
@@ -279,13 +167,51 @@ const AdminPage = () => {
                                     <Textarea id="desc-3" placeholder="Sub Description 3" value={description3} onChange={(e) => setDescription3(e.target.value)} />
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="cover_img">Cover Image</Label>
-                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="cover_img" type="file" accept='image/*' onChange={(e) => setCoverImageFile(e.target.files![0])} />
+                                    <Label htmlFor="cover_img">Cover Image <span className='text-red-500'>*</span></Label>
+                                    {coverImageUrl ? (
+                                        <div className="relative aspect-video mt-2">
+                                            <Image
+                                                alt="Upload"
+                                                fill
+                                                className="object-cover rounded-md"
+                                                src={coverImageUrl}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <FileUpload
+                                            endpoint="coverImage"
+                                            onChange={(url) => {
+                                                if (url) {
+                                                    setcoverImageUrl(url);
+                                                }
+                                            }}
+                                        />
+                                    )}
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
                                     <Label htmlFor="introImage">Introduction Image</Label>
-                                    <input className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="introImage" type="file" accept='image/*' onChange={(e) => setIntroImageFile(e.target.files![0])} />
+                                    {intoImageUrl ? (
+                                        <div className="relative aspect-video mt-2">
+                                            <Image
+                                                alt="Upload"
+                                                fill
+                                                className="object-cover rounded-md"
+                                                src={intoImageUrl}
+                                            />
+                                        </div>
+                                    ) : (
+                                        <FileUpload
+                                            endpoint="coverImage"
+                                            onChange={(url) => {
+                                                if (url) {
+                                                    setintoImageUrl(url);
+                                                }
+                                            }}
+                                        />
+                                    )}
                                 </div>
+
+
 
 
                             </div>

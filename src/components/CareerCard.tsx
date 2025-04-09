@@ -8,7 +8,12 @@ import { api } from '../../convex/_generated/api'
 
 const CareerCard = () => {
     const careers = useQuery(api.careers.getAllCareers);
-
+    const truncateText = (text: string, wordLimit: number): string => {
+        const words = text.split(" ");
+        return words.length > wordLimit
+            ? words.slice(0, wordLimit).join(" ") + "..."
+            : text;
+    };
     return (
         <section
             className="py-24 overflow-x-clip"
@@ -21,9 +26,9 @@ const CareerCard = () => {
                     {careers && careers.length > 0 ? careers.map((career, i) => (
                         <div key={i} className="cursor-pointer group relative flex flex-col my-6 bg-neutral-900 shadow-sm border border-white/70 rounded-lg  hover:shadow-lg transition-shadow duration-300">
                             <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                {(career.coverImageUrl || career.introImageUrl) ? (
+                                {(career.coverImage || career.introImage) ? (
                                     <Image priority className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
-                                        src={career.coverImageUrl || career.introImageUrl || ''} alt="investment-seed-round" fill />
+                                        src={career.coverImage || career.introImage || ''} alt="investment-seed-round" fill />
                                 ) : (
                                     <Image priority className="transition-transform duration-500 ease-[cubic-bezier(0.25, 1, 0.5, 1)] transform group-hover:scale-110"
                                         src='https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826' alt="investment-seed-round" fill />
@@ -35,7 +40,7 @@ const CareerCard = () => {
                                     {career.title}
                                 </h6>
                                 <p className="text-white/70 leading-normal font-light">
-                                    {career.introduction}
+                                    {truncateText(career.introduction, 25)}
                                 </p>
                             </div>
                             <div className="px-4 pb-4 pt-0 mt-2">

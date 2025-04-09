@@ -15,7 +15,6 @@ import type {
 } from "convex/server";
 import type * as careers from "../careers.js";
 import type * as category from "../category.js";
-import type * as upload from "../upload.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -28,7 +27,6 @@ import type * as upload from "../upload.js";
 declare const fullApi: ApiFromModules<{
   careers: typeof careers;
   category: typeof category;
-  upload: typeof upload;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

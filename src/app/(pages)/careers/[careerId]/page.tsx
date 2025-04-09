@@ -35,8 +35,8 @@ const CareerIdPage = ({ params }: CareerIdProps) => {
             <Hero title={career?.title} />
             <CareerDetail
                 categoryName={career?.categoryName}
-                coverImageUrl={career?.coverImageUrl}
-                introImageUrl={career?.introImageUrl}
+                coverImage={career?.coverImage}
+                introImage={career?.introImage}
                 introduction={career?.introduction}
                 subTitle1={career?.subTitle1}
                 description1={career?.description1}
@@ -47,7 +47,9 @@ const CareerIdPage = ({ params }: CareerIdProps) => {
 
             />
             <Separator className="container" />
-            <MoreCareers careers={careers!} />
+            <MoreCareers
+                careers={careers!}
+            />
         </>
     )
 }

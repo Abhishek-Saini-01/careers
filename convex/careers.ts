@@ -12,8 +12,8 @@ export const addCareer = mutation({
         description2: v.optional(v.string()),
         subTitle3: v.optional(v.string()),
         description3: v.optional(v.string()),
-        coverImage: v.optional(v.id("_storage")),
-        introImage: v.optional(v.id("_storage")),
+        coverImage: v.string(),
+        introImage: v.optional(v.string()),
         categoryId: v.id("categories"),
     },
     handler: async (ctx, args) => {
@@ -80,25 +80,11 @@ export const getAllCareers = query({
             careers.map(async (career) => {
                 const category = await ctx.db.get(career.categoryId);
 
-                let coverImageUrl = null;
-                let introImageUrl = null;
 
-                try {
-                    if (career.coverImage) {
-                        coverImageUrl = await ctx.storage.getUrl(career.coverImage);
-                    }
-                    if (career.introImage) {
-                        introImageUrl = await ctx.storage.getUrl(career.introImage);
-                    }
-                } catch (error) {
-                    console.error(`Error fetching image URLs for career ${career._id}:`, error);
-                }
 
                 return {
                     ...career,
                     categoryName: category?.name || "Unknown",
-                    coverImageUrl,
-                    introImageUrl,
                 };
             })
         );
@@ -123,24 +109,11 @@ export const getCareerById = query({
         const category = await ctx.db.get(career.categoryId);
 
         // Initialize URLs for images
-        let coverImageUrl = null;
-        let introImageUrl = null;
 
-        // Fetch cover image URL if it exists
-        if (career.coverImage) {
-            coverImageUrl = await ctx.storage.getUrl(career.coverImage);
-        }
-
-        // Fetch intro image URL if it exists
-        if (career.introImage) {
-            introImageUrl = await ctx.storage.getUrl(career.introImage);
-        }
 
         return {
             ...career,
             categoryName: category?.name || "Unknown", // Add category name to the career object
-            coverImageUrl, // Add cover image URL
-            introImageUrl, // Add intro image URL
         };
     },
 });

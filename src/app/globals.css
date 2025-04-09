@@ -83,7 +83,6 @@ body,
   }
 }
 
-
 .swiper-button-prev:after,
 .swiper-rtl .swiper-button-next:after {
   content: '' !important;
@@ -92,6 +91,12 @@ body,
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
   content: '' !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  height: 44px !important;
+  width: 44px !important;
 }
 
 .swiper-button-next svg,

@@ -2,8 +2,8 @@ import Image from 'next/image';
 
 interface CareerDetailsProps {
     categoryName: string;
-    coverImageUrl?: string | null;
-    introImageUrl: string | null;
+    coverImage: string;
+    introImage: string | undefined;
     introduction: string;
     subTitle1: string | undefined;
     description1: string | undefined;
@@ -15,8 +15,8 @@ interface CareerDetailsProps {
 
 const CareerDetail = ({
     categoryName,
-    coverImageUrl,
-    introImageUrl,
+    coverImage,
+    introImage,
     introduction,
     subTitle1,
     description1,
@@ -42,18 +42,18 @@ const CareerDetail = ({
                 <p className="my-10 font-normal text-white/80">
                     {description1}
                 </p>
-                {(coverImageUrl || introImageUrl) ? (
+                {(coverImage || introImage) ? (
                     <Image
                         width={768}
                         height={500}
-                        src={introImageUrl || coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
+                        src={introImage || coverImage || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
                         alt="post"
                         priority
                         className="mb-4 h-[28rem] w-full rounded-xl object-cover"
                     />) : (<Image
                         width={768}
                         height={500}
-                        src={introImageUrl || coverImageUrl || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
+                        src={introImage || coverImage || "https://img.freepik.com/fotos-premium/imagen-fondo_910766-187.jpg?w=826"}
                         alt="post"
                         priority
                         className="mb-4 h-[28rem] w-full rounded-xl object-cover"

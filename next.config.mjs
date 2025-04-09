@@ -14,6 +14,9 @@ const nextConfig = {
             {
                 hostname: "small-labrador-199.convex.cloud",
             },
+            {
+                hostname: "h2db7gu208.ufs.sh",
+            },
         ],
     },
 };
